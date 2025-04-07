@@ -62,7 +62,7 @@ class MBWindow(QObject):
         self._mainw.show()
 
     @pyqtSlot(bool, int)
-    def _display(self, valid, inches):
+    def _display(self, mb, valid, inches):
         self._validWidget.setText(str(valid))
         self._inchWidget.setText(str(inches))
 
