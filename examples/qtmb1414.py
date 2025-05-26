@@ -23,7 +23,7 @@ class MBThread(QThread, mb.Observer):
     def run(self):
         self._mb.loop(self)
 
-    def process_range(self, valid, inches):
+    def process_range(self, mb, valid, inches):
         self.sensor_reading[bool, int].emit(valid, inches)
 
         return True
@@ -62,14 +62,14 @@ class MBWindow(QObject):
         self._mainw.show()
 
     @pyqtSlot(bool, int)
-    def _display(self, mb, valid, inches):
+    def _display(self, valid, inches):
         self._validWidget.setText(str(valid))
         self._inchWidget.setText(str(inches))
 
 
 def main():
     app = QApplication(sys.argv)
-
+    app.setStyleSheet(" * {font-size: 72px; font: \"Times New Roman 72\"}")
     window = MBWindow()
 
     window.show()
